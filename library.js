@@ -28,11 +28,23 @@ const segregateEvenOdd = function(numbers){
 }
 
 const reverseArray = function(array){
-  let reversedArray = array.reverse();
+  let reversedArray = [];
+  for(let index=array.length-1;index>=0;index--){
+    reversedArray.push(array[index]);
+  }
   return reversedArray;
+}
+
+const selectNthelements = function(array,element){
+  let nthElements = [];
+  for(let index=0;index<array.length;index+=(+element)){
+    nthElements.push(array[index]);
+  }
+  return nthElements;
 }
 
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
 exports.reverseArray = reverseArray;
+exports.selectNthelements = selectNthelements;
