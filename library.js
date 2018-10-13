@@ -19,14 +19,20 @@ const selectEvenNumbers = function(numbers){
 }
 
 const segregateEvenOdd = function(numbers){
-  let partion={even:[],odd:[]};
+  let partition={even:[],odd:[]};
   let key=["even","odd"]
   for(number of numbers){
-    partion[key[number%2]].push(number);
+    partition[key[number%2]].push(number);
   }
-  return partion;
+  return partition;
+}
+
+const reverseArray = function(array){
+  let reversedArray = array.reverse();
+  return reversedArray;
 }
 
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
+exports.reverseArray = reverseArray;
