@@ -22,3 +22,6 @@ console.log("test passed");
 
 assert.deepEqual(selectNthelements(numbers,"3"),[1,4,7]);
 console.log("test passed");
+
+assert.deepEqual(revFibinocci(number),[34,21,13,8,5,3,2,1,1,0]);
+console.log("test passed");

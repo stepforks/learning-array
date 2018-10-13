@@ -43,8 +43,24 @@ const selectNthelements = function(array,element){
   return nthElements;
 }
 
+const generateFibinocciSeries = function (number){
+  if(number<2){
+    return "wrong input"
+  }
+  fibonacciSeries=[0,1];
+  for(let index=2;index < number;index++){
+    fibonacciSeries[index] = fibonacciSeries[index-1]+fibonacciSeries[index-2];
+  }
+  return fibonacciSeries;
+}
+
+const revFibinocci = function(number){
+  return reverseArray(generateFibinocciSeries(number));
+}
+
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
 exports.reverseArray = reverseArray;
+exports.revFibinocci = revFibinocci;
 exports.selectNthelements = selectNthelements;
