@@ -8,6 +8,7 @@ const revFibinocci = require("./library.js").revFibinocci;
 const findGreatestNumber =  require("./library.js").findGreatestNumber;
 const findLowestNumber =  require("./library.js").findLowestNumber;
 const averageOfNumbers =  require("./library.js").averageOfNumbers;
+const findLengthsInArray =  require("./library.js").findLengthsInArray;
 
 //select odd number function
 assert.deepEqual(selectOddNumbers([1,2,3,4,5,6,7,8,9]),[1,3,5,7,9]);
@@ -47,4 +48,9 @@ assert.deepEqual(findLowestNumber([3,5,1,-1,4,6,7]),-1);
 assert.deepEqual(averageOfNumbers([1,2,3,4,5]),3);
 assert.deepEqual(averageOfNumbers([1,2,3,4,5,6,7,8,9]),5);
 assert.deepEqual(averageOfNumbers([3,3,3,3,3]),3);
+
+//finding lengths in array
+assert.deepEqual(findLengthsInArray(["sai","ganesh","lucky"]),[3,6,5]);
+assert.deepEqual(findLengthsInArray(["nani","tinku","chotu"]),[4,5,5]);
+assert.deepEqual(findLengthsInArray([1,23,4,5678]),[1,2,1,4]);
 

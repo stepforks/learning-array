@@ -52,7 +52,7 @@ const generateFibinocciSeries = function (number){
   if(number<2){
     return "wrong input"
   }
-  fibonacciSeries=[0,1];
+  let fibonacciSeries=[0,1];
   for(let index=2;index < number;index++){
     fibonacciSeries[index] = fibonacciSeries[index-1]+fibonacciSeries[index-2];
   }
@@ -103,6 +103,18 @@ const averageOfNumbers = function(numbers){
   average = sumOfNumbers(numbers)/numbers.length;
   return average;
 }
+
+const findLengthOfString  = function(string) {
+  return (""+string).length
+}
+
+const findLengthsInArray = function(array){
+  let lengths = [];
+  for (let index in array){
+    lengths[index]=findLengthOfString(array[index]);
+  }
+  return lengths;
+}
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
@@ -112,4 +124,5 @@ exports.selectNthelementsInArray = selectNthelementsInArray;
 exports.findGreatestNumber = findGreatestNumber;
 exports.findLowestNumber = findLowestNumber;
 exports.averageOfNumbers = averageOfNumbers;
+exports.findLengthsInArray = findLengthsInArray;
 
