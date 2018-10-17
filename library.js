@@ -90,6 +90,19 @@ const findLowestNumber = function(numbers){
   return findGreatestOrLowestNumber(numbers,"lowest");
 }
 
+const sumOfNumbers = function(numbers){
+  let sum=0;
+  for(let number of numbers){
+    sum=sum+number;
+  }
+  return sum;
+}
+
+const averageOfNumbers = function(numbers){
+  let average=0;
+  average = sumOfNumbers(numbers)/numbers.length;
+  return average;
+}
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
@@ -98,3 +111,5 @@ exports.revFibinocci = revFibinocci;
 exports.selectNthelementsInArray = selectNthelementsInArray;
 exports.findGreatestNumber = findGreatestNumber;
 exports.findLowestNumber = findLowestNumber;
+exports.averageOfNumbers = averageOfNumbers;
+
