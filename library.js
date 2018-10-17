@@ -116,23 +116,32 @@ const findLengthsInArray = function(array){
   return lengths;
 }
 
-const countingNumbers = function(numbers,type){
-  let operation={"even":isEven , "odd":isOdd }
+const countOddNumbers = function(numbers){
+  return selectOddNumbers(numbers).length;
+}
+
+const countEvenNumbers = function(numbers){
+  return selectEvenNumbers(numbers).length;
+}
+
+
+const countingNumbers = function(numbers,type,threshold){
+  let operation={"above":isGreater , "below":isLowest }
   let count=0;
   for(let number of numbers){
-    if(operation[type](number)){
+    if(operation[type](number,threshold)){
       count++
     }
   }
   return count;
 }
 
-const countOddNumbers = function(numbers){
-  return countingNumbers(numbers,"odd");
+const countAboveNumbers = function(numbers,threshold){
+  return countingNumbers(numbers,"above",threshold);
 }
 
-const countEvenNumbers = function(numbers){
-  return countingNumbers(numbers,"even");
+const countBelowNumbers = function(numbers,threshold){
+  return countingNumbers(numbers,"below",threshold);
 }
 
 exports.selectOddNumbers = selectOddNumbers;
@@ -147,4 +156,6 @@ exports.averageOfNumbers = averageOfNumbers;
 exports.findLengthsInArray = findLengthsInArray;
 exports.countOddNumbers = countOddNumbers;
 exports.countEvenNumbers = countEvenNumbers;
+exports.countAboveNumbers = countAboveNumbers;
+exports.countBelowNumbers = countBelowNumbers;
 
