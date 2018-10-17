@@ -115,6 +115,26 @@ const findLengthsInArray = function(array){
   }
   return lengths;
 }
+
+const countingNumbers = function(numbers,type){
+  let operation={"even":isEven , "odd":isOdd }
+  let count=0;
+  for(let number of numbers){
+    if(operation[type](number)){
+      count++
+    }
+  }
+  return count;
+}
+
+const countOddNumbers = function(numbers){
+  return countingNumbers(numbers,"odd");
+}
+
+const countEvenNumbers = function(numbers){
+  return countingNumbers(numbers,"even");
+}
+
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
@@ -125,4 +145,6 @@ exports.findGreatestNumber = findGreatestNumber;
 exports.findLowestNumber = findLowestNumber;
 exports.averageOfNumbers = averageOfNumbers;
 exports.findLengthsInArray = findLengthsInArray;
+exports.countOddNumbers = countOddNumbers;
+exports.countEvenNumbers = countEvenNumbers;
 

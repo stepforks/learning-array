@@ -9,6 +9,8 @@ const findGreatestNumber =  require("./library.js").findGreatestNumber;
 const findLowestNumber =  require("./library.js").findLowestNumber;
 const averageOfNumbers =  require("./library.js").averageOfNumbers;
 const findLengthsInArray =  require("./library.js").findLengthsInArray;
+const countOddNumbers =  require("./library.js").countOddNumbers;
+const countEvenNumbers =  require("./library.js").countEvenNumbers;
 
 //select odd number function
 assert.deepEqual(selectOddNumbers([1,2,3,4,5,6,7,8,9]),[1,3,5,7,9]);
@@ -54,3 +56,12 @@ assert.deepEqual(findLengthsInArray(["sai","ganesh","lucky"]),[3,6,5]);
 assert.deepEqual(findLengthsInArray(["nani","tinku","chotu"]),[4,5,5]);
 assert.deepEqual(findLengthsInArray([1,23,4,5678]),[1,2,1,4]);
 
+//counting odd numbers
+assert.deepEqual(countOddNumbers([1,2,3,4,5]),3);
+assert.deepEqual(countOddNumbers([1,2,3,4,5,6,7,8,9]),5);
+assert.deepEqual(countOddNumbers([3,3,3,3,3]),5);
+
+//counting even numbers
+assert.deepEqual(countEvenNumbers([1,2,3,4,5]),2);
+assert.deepEqual(countEvenNumbers([1,2,3,4,5,6,7,8,9]),4);
+assert.deepEqual(countEvenNumbers([3,3,3,3,3]),0);
