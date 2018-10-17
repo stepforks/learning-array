@@ -63,14 +63,31 @@ const revFibinocci = function(number){
   return reverseArray(generateFibinocciSeries(number));
 }
 
-const findGreatestNumber = function(numbers){
-  greatestNumber = numbers[0];
+const isGreater =function(num1,num2){
+  return num1 > num2;
+}
+
+const isLowest = function(num1,num2){
+  return num1 < num2;
+}
+
+const findGreatestOrLowestNumber = function(numbers,type){
+  let operation={ 'lowest':isLowest ,'greater':isGreater } 
+  let result=numbers[0];
   for(number of numbers){
-    if(greatestNumber < number){
-      greatestNumber=number;
+    if(operation[type](number,result)){
+      result=number;
     }
   }
-  return greatestNumber;
+  return result;
+}
+
+const findGreatestNumber = function(numbers){
+  return findGreatestOrLowestNumber(numbers,"greater");
+}
+
+const findLowestNumber = function(numbers){
+  return findGreatestOrLowestNumber(numbers,"lowest");
 }
 
 exports.selectOddNumbers = selectOddNumbers;
@@ -80,3 +97,4 @@ exports.reverseArray = reverseArray;
 exports.revFibinocci = revFibinocci;
 exports.selectNthelementsInArray = selectNthelementsInArray;
 exports.findGreatestNumber = findGreatestNumber;
+exports.findLowestNumber = findLowestNumber;

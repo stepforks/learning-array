@@ -6,6 +6,7 @@ const reverseArray = require("./library.js").reverseArray;
 const selectNthelementsInArray = require("./library.js").selectNthelementsInArray;
 const revFibinocci = require("./library.js").revFibinocci;
 const findGreatestNumber =  require("./library.js").findGreatestNumber;
+const findLowestNumber =  require("./library.js").findLowestNumber;
 
 //select odd number function
 assert.deepEqual(selectOddNumbers([1,2,3,4,5,6,7,8,9]),[1,3,5,7,9]);
@@ -36,3 +37,8 @@ assert.deepEqual(revFibinocci(5),[3,2,1,1,0]);
 //find greatest number in array
 assert.deepEqual(findGreatestNumber([1,2,3,4,5,6,7,8,9]),9);
 assert.deepEqual(findGreatestNumber([1,2,3,4,5,6,7,8,9,78,0]),78);
+
+//find lowest number in array
+assert.deepEqual(findLowestNumber([1]),1);
+assert.deepEqual(findLowestNumber([3,5,1,-1,4,6,7]),-1);
+
