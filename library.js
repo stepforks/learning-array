@@ -1,7 +1,14 @@
+const isOdd  = function(number) {
+  return ((number%2)&&(number>0));
+}
+
+const isEven = function(number) {
+  return !((number%2)||(number<0));
+}
 const selectOddNumbers = function(numbers){
   let oddNumbers=[];
   for(let number of numbers){
-    if(number%2){
+    if(isOdd(number)){
       oddNumbers.push(number);
     }
   }
@@ -11,7 +18,7 @@ const selectOddNumbers = function(numbers){
 const selectEvenNumbers = function(numbers){
   let evenNumbers=[];
   for(let number of numbers){
-    if(!(number%2)){
+    if(isEven(number)){
       evenNumbers.push(number);
     }
   }
@@ -20,10 +27,8 @@ const selectEvenNumbers = function(numbers){
 
 const segregateEvenOdd = function(numbers){
   let partition={even:[],odd:[]};
-  let key=["even","odd"]
-  for(number of numbers){
-    partition[key[number%2]].push(number);
-  }
+  partition.even = selectEvenNumbers(numbers);
+  partition.odd = selectOddNumbers(numbers); 
   return partition;
 }
 
@@ -35,7 +40,7 @@ const reverseArray = function(array){
   return reversedArray;
 }
 
-const selectNthelements = function(array,element){
+const selectNthelementsInArray = function(array,element){
   let nthElements = [];
   for(let index=0;index<array.length;index+=(+element)){
     nthElements.push(array[index]);
@@ -58,9 +63,20 @@ const revFibinocci = function(number){
   return reverseArray(generateFibinocciSeries(number));
 }
 
+const findGreatestNumber = function(numbers){
+  greatestNumber = numbers[0];
+  for(number of numbers){
+    if(greatestNumber < number){
+      greatestNumber=number;
+    }
+  }
+  return greatestNumber;
+}
+
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
 exports.reverseArray = reverseArray;
 exports.revFibinocci = revFibinocci;
-exports.selectNthelements = selectNthelements;
+exports.selectNthelementsInArray = selectNthelementsInArray;
+exports.findGreatestNumber = findGreatestNumber;

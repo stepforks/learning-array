@@ -3,25 +3,36 @@ const selectOddNumbers = require("./library.js").selectOddNumbers;
 const selectEvenNumbers = require("./library.js").selectEvenNumbers;
 const segregateEvenOdd = require("./library.js").segregateEvenOdd;
 const reverseArray = require("./library.js").reverseArray;
-const selectNthelements = require("./library.js").selectNthelements;
+const selectNthelementsInArray = require("./library.js").selectNthelementsInArray;
 const revFibinocci = require("./library.js").revFibinocci;
-const numbers=require("./input_file.js").numbers;
-const number=require("./input_file.js").number;
+const findGreatestNumber =  require("./library.js").findGreatestNumber;
 
-assert.deepEqual(selectOddNumbers(numbers),[1,3,5,7,9]);
-console.log("test passed");
+//select odd number function
+assert.deepEqual(selectOddNumbers([1,2,3,4,5,6,7,8,9]),[1,3,5,7,9]);
+assert.deepEqual(selectOddNumbers([4,5,6,1,2,5,7]),[5,1,5,7]);
+assert.deepEqual(selectOddNumbers([0,2,3,4,5]),[3,5]);
 
-assert.deepEqual(selectEvenNumbers(numbers),[2,4,6,8]);
-console.log("test passed");
+//select even number function
+assert.deepEqual(selectEvenNumbers([1,2,3,4,5,6,7,8,9]),[2,4,6,8]);
+assert.deepEqual(selectEvenNumbers([0,2,4,5,7]),[0,2,4]);
+assert.deepEqual(selectEvenNumbers([1,4,6,2,8]),[4,6,2,8]);
 
-assert.deepEqual(segregateEvenOdd(numbers),{ even:[2,4,6,8], odd:[1,3,5,7,9]});
-console.log("test passed");
+//segregate even and odd numbers
+assert.deepEqual(segregateEvenOdd([1,2,3,4,5,6,7,8,9]),{ even:[2,4,6,8], odd:[1,3,5,7,9]});
+assert.deepEqual(segregateEvenOdd([0,-1,3,4,5]),{ even:[0,4], odd:[3,5]});
 
-assert.deepEqual(reverseArray(numbers),[9,8,7,6,5,4,3,2,1]);
-console.log("test passed");
+//reversing array elments
+assert.deepEqual(reverseArray([1,2,3,4,5,6,7,8,9]),[9,8,7,6,5,4,3,2,1]);
+assert.deepEqual(reverseArray(["sai","ganesh"]),["ganesh","sai"]);
 
-assert.deepEqual(selectNthelements(numbers,"3"),[1,4,7]);
-console.log("test passed");
+//selecting nth elements in array
+assert.deepEqual(selectNthelementsInArray([1,2,3,4,5,6,7,8,9],"3"),[1,4,7]);
+assert.deepEqual(selectNthelementsInArray([7,5,7,3,4,7,2,4,6,7],"3"),[7,3,2,7]);
 
-assert.deepEqual(revFibinocci(number),[34,21,13,8,5,3,2,1,1,0]);
-console.log("test passed");
+// generate and reverse fibinocci series
+assert.deepEqual(revFibinocci(10),[34,21,13,8,5,3,2,1,1,0]);
+assert.deepEqual(revFibinocci(5),[3,2,1,1,0]);
+
+//find greatest number in array
+assert.deepEqual(findGreatestNumber([1,2,3,4,5,6,7,8,9]),9);
+assert.deepEqual(findGreatestNumber([1,2,3,4,5,6,7,8,9,78,0]),78);
