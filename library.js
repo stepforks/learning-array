@@ -145,7 +145,7 @@ const countBelowNumbers = function(numbers,threshold){
 }
 
 const findIndexOfElement = function(array,element){
-  let position = "There is no such element"
+  let position = -1;
   for(let index=0;index<array.length;index++){
     if (array[index] == element){
       position = index;
@@ -153,6 +153,25 @@ const findIndexOfElement = function(array,element){
     }
   }
   return position;
+}
+
+const checkAscendingOrDescendingOrder  = function(numbers,type){
+  let operation = { "ascending":isGreater ,"descending" :isLowest };
+  let msg = true;
+  for (let index=1;index < numbers.length;index++){
+    if(operation[type](numbers[index-1],numbers[index])){
+      msg = false;
+    }
+  }
+  return msg;
+}
+
+const checkAscendingOrder =function(numbers){
+  return checkAscendingOrDescendingOrder(numbers,"ascending");
+}
+
+const checkDescendingOrder =function(numbers){
+  return checkAscendingOrDescendingOrder(numbers,"descending");
 }
 
 exports.selectOddNumbers = selectOddNumbers;
@@ -170,3 +189,5 @@ exports.countEvenNumbers = countEvenNumbers;
 exports.countAboveNumbers = countAboveNumbers;
 exports.countBelowNumbers = countBelowNumbers;
 exports.findIndexOfElement = findIndexOfElement;
+exports.checkAscendingOrder = checkAscendingOrder;
+exports.checkDescendingOrder = checkDescendingOrder;

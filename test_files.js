@@ -14,6 +14,8 @@ const countEvenNumbers =  require("./library.js").countEvenNumbers;
 const countAboveNumbers =  require("./library.js").countAboveNumbers;
 const countBelowNumbers =  require("./library.js").countBelowNumbers;
 const findIndexOfElement =  require("./library.js").findIndexOfElement;
+const checkAscendingOrder =  require("./library.js").checkAscendingOrder;
+const checkDescendingOrder =  require("./library.js").checkDescendingOrder;
 
 //select odd number function
 assert.deepEqual(selectOddNumbers([1,2,3,4,5,6,7,8,9]),[1,3,5,7,9]);
@@ -82,5 +84,14 @@ assert.deepEqual(countBelowNumbers([3,3,3,3,3],4),5);
 //finding index of the element in an array
 assert.deepEqual(findIndexOfElement([1,2,3,4,5],1),0);
 assert.deepEqual(findIndexOfElement([1,2,3,4,5,6,7,8,9],8),7);
-assert.deepEqual(findIndexOfElement([3,3,3,3,3],4),"There is no such element");
+assert.deepEqual(findIndexOfElement([3,3,3,3,3],4),-1);
 
+//checking whether the array is ascending order or not
+assert.deepEqual(checkAscendingOrder([1,2,3,4,5]),true);
+assert.deepEqual(checkAscendingOrder([1,2,3,4,5,6,7,8,9]),true);
+assert.deepEqual(checkAscendingOrder([5,4,3,2,1]),false);
+
+//checking whether the array is descending order or not
+assert.deepEqual(checkDescendingOrder([1,2,3,4,5]),false);
+assert.deepEqual(checkDescendingOrder([5,4,3,2,4]),false);
+assert.deepEqual(checkDescendingOrder([5,4,3,2,1]),true);
