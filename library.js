@@ -218,6 +218,26 @@ const findUnionUniqueElement = function(array1,array2){
   return findUniqueElements(array1.concat(array2));
 }
 
+const findIntersectionOrDifferenceOfTwoArrays = function(array1,array2,type){
+  let operation = { "intersection" :isElementPresent ,"difference" :isElementNotPresent };
+  let unique1 = findUniqueElements(array1);
+  let unique2 = findUniqueElements(array2);
+  let result=[];
+  for(let index = 0;index < unique1.length;index++){
+    if(operation[type](unique1[index],unique2)){
+      result[result.length]=unique1[index];
+    }
+  }
+  return result;
+}
+
+const findIntersectionOfTwoArrays = function (array1,array2){
+  return findIntersectionOrDifferenceOfTwoArrays(array1,array2,"intersection");
+}
+
+const findDifferenceOfTwoArrays = function (array1,array2){
+  return findIntersectionOrDifferenceOfTwoArrays(array1,array2,"difference");
+}
 
 
 exports.selectOddNumbers = selectOddNumbers;
@@ -240,3 +260,4 @@ exports.checkDescendingOrder = checkDescendingOrder;
 exports.extractDigits = extractDigits;
 exports.findUniqueElements = findUniqueElements;
 exports.findUnionUniqueElement = findUnionUniqueElement;
+exports.findIntersectionOfTwoArrays = findIntersectionOfTwoArrays;

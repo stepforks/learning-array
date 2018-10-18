@@ -96,3 +96,9 @@ assert.deepEqual(findUnionUniqueElement(["a",1,2,],[]),["a",1,2]);
 assert.deepEqual(findUnionUniqueElement([1,2,3,2,3],[5,6,7,5]),[1,2,3,5,6,7]);
 assert.deepEqual(findUnionUniqueElement([1,2,3,4,5,1],["a","b"]),[1,2,3,4,5,"a","b"]);
 
+//find intersection elements in two array
+assert.deepEqual(findIntersectionOfTwoArrays(["a",1,2,],[1,2]),[1,2]);
+assert.deepEqual(findIntersectionOfTwoArrays(["a",1,2,],[]),[]);
+assert.deepEqual(findIntersectionOfTwoArrays([1,2,3,2,3],[5,6,7,1,2,3,5]),[1,2,3]);
+assert.deepEqual(findIntersectionOfTwoArrays([1,2,3,4,5,1],["a","b"]),[]);
+
