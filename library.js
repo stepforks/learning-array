@@ -260,6 +260,14 @@ const generateRotatedArray = function(array,position){
   return result;
 }
 
+const generatePartitionedArray = function(array,number){
+  let result={ false : [] ,true :[] };
+  for(value of array){
+    result[isGreater(value,number)].push(value);
+  }
+  return [ result.false , result.true ];
+}
+
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
@@ -284,3 +292,4 @@ exports.findIntersectionOfTwoArrays = findIntersectionOfTwoArrays;
 exports.findDifferenceOfTwoArrays = findDifferenceOfTwoArrays;
 exports.generateZipOfTwoArrays = generateZipOfTwoArrays;
 exports.generateRotatedArray = generateRotatedArray;
+exports.generatePartitionedArray = generatePartitionedArray;
