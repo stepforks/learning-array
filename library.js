@@ -214,6 +214,9 @@ const findUniqueElements = function(array) {
   return result;
 }
 
+const findUnionUniqueElement = function(array1,array2){
+  return findUniqueElements(array1.concat(array2));
+}
 
 
 
@@ -236,3 +239,4 @@ exports.checkAscendingOrder = checkAscendingOrder;
 exports.checkDescendingOrder = checkDescendingOrder;
 exports.extractDigits = extractDigits;
 exports.findUniqueElements = findUniqueElements;
+exports.findUnionUniqueElement = findUnionUniqueElement;
