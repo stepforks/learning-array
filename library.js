@@ -261,3 +261,4 @@ exports.extractDigits = extractDigits;
 exports.findUniqueElements = findUniqueElements;
 exports.findUnionUniqueElement = findUnionUniqueElement;
 exports.findIntersectionOfTwoArrays = findIntersectionOfTwoArrays;
+exports.findDifferenceOfTwoArrays = findDifferenceOfTwoArrays;

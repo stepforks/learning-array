@@ -102,3 +102,9 @@ assert.deepEqual(findIntersectionOfTwoArrays(["a",1,2,],[]),[]);
 assert.deepEqual(findIntersectionOfTwoArrays([1,2,3,2,3],[5,6,7,1,2,3,5]),[1,2,3]);
 assert.deepEqual(findIntersectionOfTwoArrays([1,2,3,4,5,1],["a","b"]),[]);
 
+//find difference elements in two array
+assert.deepEqual(findDifferenceOfTwoArrays(["a",1,2,],[1,2]),["a"]);
+assert.deepEqual(findDifferenceOfTwoArrays(["a",1,2,],[]),["a",1,2]);
+assert.deepEqual(findDifferenceOfTwoArrays([1,2,3,2,3],[5,6,7,5]),[1,2,3]);
+assert.deepEqual(findDifferenceOfTwoArrays([1,2,3,4,5,1],["a","b"]),[1,2,3,4,5]);
+
