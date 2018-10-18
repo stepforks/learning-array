@@ -1,23 +1,5 @@
 const assert = require("assert");
-const selectOddNumbers = require("./library.js").selectOddNumbers;
-const selectEvenNumbers = require("./library.js").selectEvenNumbers;
-const segregateEvenOdd = require("./library.js").segregateEvenOdd;
-const reverseArray = require("./library.js").reverseArray;
-const selectNthelementsInArray = require("./library.js").selectNthelementsInArray;
-const revFibinocci = require("./library.js").revFibinocci;
-const findGreatestNumber =  require("./library.js").findGreatestNumber;
-const findLowestNumber =  require("./library.js").findLowestNumber;
-const averageOfNumbers =  require("./library.js").averageOfNumbers;
-const findLengthsInArray =  require("./library.js").findLengthsInArray;
-const countOddNumbers =  require("./library.js").countOddNumbers;
-const countEvenNumbers =  require("./library.js").countEvenNumbers;
-const countAboveNumbers =  require("./library.js").countAboveNumbers;
-const countBelowNumbers =  require("./library.js").countBelowNumbers;
-const findIndexOfElement =  require("./library.js").findIndexOfElement;
-const checkAscendingOrder =  require("./library.js").checkAscendingOrder;
-const checkDescendingOrder =  require("./library.js").checkDescendingOrder;
-const extractDigits =  require("./library.js").extractDigits;
-
+const {selectOddNumbers,selectEvenNumbers,segregateEvenOdd,reverseArray,selectNthelementsInArray,revFibinocci,findGreatestNumber,findLowestNumber,averageOfNumbers,findLengthsInArray,countOddNumbers,countEvenNumbers,countAboveNumbers,countBelowNumbers,findIndexOfElement,checkAscendingOrder,checkDescendingOrder,extractDigits,findUniqueElements,findUnionUniqueElement,findIntersectionOfTwoArrays,findDifferenceOfTwoArrays,generateZipOfTwoArrays}=require("./library.js");
 //select odd number function
 assert.deepEqual(selectOddNumbers([1,2,3,4,5,6,7,8,9]),[1,3,5,7,9]);
 assert.deepEqual(selectOddNumbers([4,5,6,1,2,5,7]),[5,1,5,7]);
@@ -83,7 +65,7 @@ assert.deepEqual(countBelowNumbers([1,2,3,4,5,6,7,8,9],8),7);
 assert.deepEqual(countBelowNumbers([3,3,3,3,3],4),5);
 
 //finding index of the element in an array
-assert.deepEqual(findIndexOfElement([1,2,3,4,5],1),0);
+assert.deepEqual(findIndexOfElement([1,2,3,4,5,2],2),1);
 assert.deepEqual(findIndexOfElement([1,2,3,4,5,6,7,8,9],8),7);
 assert.deepEqual(findIndexOfElement([3,3,3,3,3],4),-1);
 
@@ -99,6 +81,12 @@ assert.deepEqual(checkDescendingOrder([5,4,3,2,1]),true);
 
 //extracting digits from the string
 assert.deepEqual(extractDigits("abcde"),[]);
+assert.deepEqual(extractDigits(12345),[1,2,3,4,5]);
 assert.deepEqual(extractDigits("12345"),[1,2,3,4,5]);
 assert.deepEqual(extractDigits("12345a"),[1,2,3,4,5]);
+
+//find unique elements in the array
+assert.deepEqual(findUniqueElements(["a",1,2,]),["a",1,2]);
+assert.deepEqual(findUniqueElements([1,2,3,2,3]),[1,2,3]);
+assert.deepEqual(findUniqueElements([1,2,3,4,5,1]),[1,2,3,4,5]);
 

@@ -180,13 +180,42 @@ const isNumber  = function(number) {
 
 const extractDigits = function(string){
   let digits=[];
-  for(character of string){
+  string = "" + string;
+  for(let character of string){
     if(isNumber(character)){
       digits[digits.length]=+character;
     }
   }
   return digits;
 }
+
+const isElementPresent =function(element,array){
+  let result = false;
+  for(let index = 0; index < array.length;index++){
+    if(element == array[index]){
+      result = true;
+      index = array.length;
+    }
+  }
+  return result;
+}
+
+const isElementNotPresent = function(element,array){
+  return !(isElementPresent(element,array));
+}
+
+const findUniqueElements = function(array) {
+  let result=[];
+  for(let index = 0;index < array.length ;index++){
+    if(!(isElementPresent(array[index],result))){
+      result[result.length]=array[index];
+    }
+  }
+  return result;
+}
+
+
+
 
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
@@ -206,3 +235,4 @@ exports.findIndexOfElement = findIndexOfElement;
 exports.checkAscendingOrder = checkAscendingOrder;
 exports.checkDescendingOrder = checkDescendingOrder;
 exports.extractDigits = extractDigits;
+exports.findUniqueElements = findUniqueElements;
