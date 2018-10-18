@@ -248,6 +248,17 @@ const generateZipOfTwoArrays  = function(array1,array2) {
   return result;
 }
 
+const generateRotatedArray = function(array,position){
+  let result = [];
+  let length = Math.min(array.length,position);
+  for(let index = length ; index < array.length;index++){
+    result.push(array[index]);
+  }
+  for(let index = 0;index < length;index++){
+    result.push(array[index]);
+  }
+  return result;
+}
 
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
@@ -272,3 +283,4 @@ exports.findUnionUniqueElement = findUnionUniqueElement;
 exports.findIntersectionOfTwoArrays = findIntersectionOfTwoArrays;
 exports.findDifferenceOfTwoArrays = findDifferenceOfTwoArrays;
 exports.generateZipOfTwoArrays = generateZipOfTwoArrays;
+exports.generateRotatedArray = generateRotatedArray;

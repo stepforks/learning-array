@@ -1,5 +1,5 @@
 const assert = require("assert");
-const {selectOddNumbers,selectEvenNumbers,segregateEvenOdd,reverseArray,selectNthelementsInArray,revFibinocci,findGreatestNumber,findLowestNumber,averageOfNumbers,findLengthsInArray,countOddNumbers,countEvenNumbers,countAboveNumbers,countBelowNumbers,findIndexOfElement,checkAscendingOrder,checkDescendingOrder,extractDigits,findUniqueElements,findUnionUniqueElement,findIntersectionOfTwoArrays,findDifferenceOfTwoArrays,generateZipOfTwoArrays}=require("./library.js");
+const {selectOddNumbers,selectEvenNumbers,segregateEvenOdd,reverseArray,selectNthelementsInArray,revFibinocci,findGreatestNumber,findLowestNumber,averageOfNumbers,findLengthsInArray,countOddNumbers,countEvenNumbers,countAboveNumbers,countBelowNumbers,findIndexOfElement,checkAscendingOrder,checkDescendingOrder,extractDigits,findUniqueElements,findUnionUniqueElement,findIntersectionOfTwoArrays,findDifferenceOfTwoArrays,generateZipOfTwoArrays,generateRotatedArray}=require("./library.js");
 //select odd number function
 assert.deepEqual(selectOddNumbers([1,2,3,4,5,6,7,8,9]),[1,3,5,7,9]);
 assert.deepEqual(selectOddNumbers([4,5,6,1,2,5,7]),[5,1,5,7]);
@@ -113,3 +113,9 @@ assert.deepEqual(generateZipOfTwoArrays(["a",1,2,],[1,2]),[["a",1],[1,2]]);
 assert.deepEqual(generateZipOfTwoArrays(["a",1,2,],[]),[]);
 assert.deepEqual(generateZipOfTwoArrays([1,2,3,2,3],[5,6,7,5]),[[1,5],[2,6],[3,7],[2,5]]);
 assert.deepEqual(generateZipOfTwoArrays([1,2,3,4,5,1],["a","b"]),[[1,"a"],[2,"b"]]);
+
+//generate rotated array
+assert.deepEqual(generateRotatedArray([1,2,3,4,5],2),[3,4,5,1,2]);
+assert.deepEqual(generateRotatedArray(["a",1,2,],1),[1,2,"a"]);
+assert.deepEqual(generateRotatedArray([1,2,3,4,"a",5],9),[1,2,3,4,"a",5]);
+assert.deepEqual(generateRotatedArray([1,2,3,4,5,1],"a"),[]);
