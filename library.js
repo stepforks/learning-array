@@ -239,6 +239,15 @@ const findDifferenceOfTwoArrays = function (array1,array2){
   return findIntersectionOrDifferenceOfTwoArrays(array1,array2,"difference");
 }
 
+const generateZipOfTwoArrays  = function(array1,array2) {
+  let result = [];
+  let length = Math.min(array1.length,array2.length);
+  for(let index=0 ; index < length;index++){
+    result[index] = [array1[index],array2[index]];
+  }
+  return result;
+}
+
 
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
@@ -262,3 +271,4 @@ exports.findUniqueElements = findUniqueElements;
 exports.findUnionUniqueElement = findUnionUniqueElement;
 exports.findIntersectionOfTwoArrays = findIntersectionOfTwoArrays;
 exports.findDifferenceOfTwoArrays = findDifferenceOfTwoArrays;
+exports.generateZipOfTwoArrays = generateZipOfTwoArrays;

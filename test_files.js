@@ -108,3 +108,8 @@ assert.deepEqual(findDifferenceOfTwoArrays(["a",1,2,],[]),["a",1,2]);
 assert.deepEqual(findDifferenceOfTwoArrays([1,2,3,2,3],[5,6,7,5]),[1,2,3]);
 assert.deepEqual(findDifferenceOfTwoArrays([1,2,3,4,5,1],["a","b"]),[1,2,3,4,5]);
 
+//find zip elements in two array
+assert.deepEqual(generateZipOfTwoArrays(["a",1,2,],[1,2]),[["a",1],[1,2]]);
+assert.deepEqual(generateZipOfTwoArrays(["a",1,2,],[]),[]);
+assert.deepEqual(generateZipOfTwoArrays([1,2,3,2,3],[5,6,7,5]),[[1,5],[2,6],[3,7],[2,5]]);
+assert.deepEqual(generateZipOfTwoArrays([1,2,3,4,5,1],["a","b"]),[[1,"a"],[2,"b"]]);
