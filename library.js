@@ -144,6 +144,17 @@ const countBelowNumbers = function(numbers,threshold){
   return countingNumbers(numbers,"below",threshold);
 }
 
+const findIndexOfElement = function(array,element){
+  let position = "There is no such element"
+  for(let index=0;index<array.length;index++){
+    if (array[index] == element){
+      position = index;
+      index =array.length;
+    }
+  }
+  return position;
+}
+
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
@@ -158,4 +169,4 @@ exports.countOddNumbers = countOddNumbers;
 exports.countEvenNumbers = countEvenNumbers;
 exports.countAboveNumbers = countAboveNumbers;
 exports.countBelowNumbers = countBelowNumbers;
-
+exports.findIndexOfElement = findIndexOfElement;
