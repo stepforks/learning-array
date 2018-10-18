@@ -16,6 +16,7 @@ const countBelowNumbers =  require("./library.js").countBelowNumbers;
 const findIndexOfElement =  require("./library.js").findIndexOfElement;
 const checkAscendingOrder =  require("./library.js").checkAscendingOrder;
 const checkDescendingOrder =  require("./library.js").checkDescendingOrder;
+const extractDigits =  require("./library.js").extractDigits;
 
 //select odd number function
 assert.deepEqual(selectOddNumbers([1,2,3,4,5,6,7,8,9]),[1,3,5,7,9]);
@@ -95,3 +96,9 @@ assert.deepEqual(checkAscendingOrder([5,4,3,2,1]),false);
 assert.deepEqual(checkDescendingOrder([1,2,3,4,5]),false);
 assert.deepEqual(checkDescendingOrder([5,4,3,2,4]),false);
 assert.deepEqual(checkDescendingOrder([5,4,3,2,1]),true);
+
+//extracting digits from the string
+assert.deepEqual(extractDigits("abcde"),[]);
+assert.deepEqual(extractDigits("12345"),[1,2,3,4,5]);
+assert.deepEqual(extractDigits("12345a"),[1,2,3,4,5]);
+

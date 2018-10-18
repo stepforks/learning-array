@@ -174,6 +174,20 @@ const checkDescendingOrder =function(numbers){
   return checkAscendingOrDescendingOrder(numbers,"descending");
 }
 
+const isNumber  = function(number) {
+  return ((+number)==number)
+}
+
+const extractDigits = function(string){
+  let digits=[];
+  for(character of string){
+    if(isNumber(character)){
+      digits[digits.length]=+character;
+    }
+  }
+  return digits;
+}
+
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
@@ -191,3 +205,4 @@ exports.countBelowNumbers = countBelowNumbers;
 exports.findIndexOfElement = findIndexOfElement;
 exports.checkAscendingOrder = checkAscendingOrder;
 exports.checkDescendingOrder = checkDescendingOrder;
+exports.extractDigits = extractDigits;
