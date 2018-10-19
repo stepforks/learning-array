@@ -268,6 +268,17 @@ const generatePartitionedArray = function(array,number){
   return [ result.false , result.true ];
 }
 
+const isSubset = function (array,subsetArray){
+  let result = true;
+  for(index = 0;index < subsetArray.length;index++){
+    if(isElementNotPresent(subsetArray[index],array)){
+      result = false;
+      index = subsetArray.length;
+    }
+  }
+  return result;
+}
+
 exports.selectOddNumbers = selectOddNumbers;
 exports.selectEvenNumbers = selectEvenNumbers;
 exports.segregateEvenOdd = segregateEvenOdd;
@@ -293,3 +304,4 @@ exports.findDifferenceOfTwoArrays = findDifferenceOfTwoArrays;
 exports.generateZipOfTwoArrays = generateZipOfTwoArrays;
 exports.generateRotatedArray = generateRotatedArray;
 exports.generatePartitionedArray = generatePartitionedArray;
+exports.isSubset = isSubset;

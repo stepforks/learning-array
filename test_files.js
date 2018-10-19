@@ -1,5 +1,5 @@
 const assert = require("assert");
-const {selectOddNumbers,selectEvenNumbers,segregateEvenOdd,reverseArray,selectNthelementsInArray,revFibinocci,findGreatestNumber,findLowestNumber,averageOfNumbers,findLengthsInArray,countOddNumbers,countEvenNumbers,countAboveNumbers,countBelowNumbers,findIndexOfElement,checkAscendingOrder,checkDescendingOrder,extractDigits,findUniqueElements,findUnionUniqueElement,findIntersectionOfTwoArrays,findDifferenceOfTwoArrays,generateZipOfTwoArrays,generateRotatedArray,generatePartitionedArray}=require("./library.js");
+const {selectOddNumbers,selectEvenNumbers,segregateEvenOdd,reverseArray,selectNthelementsInArray,revFibinocci,findGreatestNumber,findLowestNumber,averageOfNumbers,findLengthsInArray,countOddNumbers,countEvenNumbers,countAboveNumbers,countBelowNumbers,findIndexOfElement,checkAscendingOrder,checkDescendingOrder,extractDigits,findUniqueElements,findUnionUniqueElement,findIntersectionOfTwoArrays,findDifferenceOfTwoArrays,generateZipOfTwoArrays,generateRotatedArray,generatePartitionedArray,isSubset}=require("./library.js");
 //select odd number function
 assert.deepEqual(selectOddNumbers([1,2,3,4,5,6,7,8,9]),[1,3,5,7,9]);
 assert.deepEqual(selectOddNumbers([4,5,6,1,2,5,7]),[5,1,5,7]);
@@ -125,3 +125,9 @@ assert.deepEqual(generatePartitionedArray([1,2,3,4,5],2),[[1,2],[3,4,5]]);
 assert.deepEqual(generatePartitionedArray([1,2,],1),[[1],[2]]);
 assert.deepEqual(generatePartitionedArray([1,2,3,4,5],9),[[1,2,3,4,5],[]]);
 assert.deepEqual(generatePartitionedArray([1,2,3,4,5,1],0),[[],[1,2,3,4,5,1]]);
+
+//is subset array is really subset array of real array
+assert.deepEqual(isSubset(["a",1,2,],[1,2]),true);
+assert.deepEqual(isSubset(["a",1,2,],[]),true);
+assert.deepEqual(isSubset([1,2,3,2,3],[5,6,7,5]),false);
+assert.deepEqual(isSubset([1,2,3,4,5,1],["a","b"]),false);
