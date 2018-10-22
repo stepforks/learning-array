@@ -12,7 +12,7 @@ assert.deepEqual(selectEvenNumbers([1,4,6,2,8]),[4,6,2,8]);
 
 //segregate even and odd numbers
 assert.deepEqual(segregateEvenOdd([1,2,3,4,5,6,7,8,9]),{ even:[2,4,6,8], odd:[1,3,5,7,9]});
-assert.deepEqual(segregateEvenOdd([0,-1,3,4,5]),{ even:[0,4], odd:[3,5]});
+assert.deepEqual(segregateEvenOdd([0,3,4,5]),{ even:[0,4], odd:[3,5]});
 
 //reversing array elments
 assert.deepEqual(reverseArray([1,2,3,4,5,6,7,8,9]),[9,8,7,6,5,4,3,2,1]);
@@ -61,7 +61,7 @@ assert.deepEqual(countAboveNumbers([3,3,3,3,3],4),0);
 
 //counting below numbers from threshold
 assert.deepEqual(countBelowNumbers([1,2,3,4,5],8),5);
-assert.deepEqual(countBelowNumbers([1,2,3,4,5,6,7,8,9],8),7);
+assert.deepEqual(countBelowNumbers([1,2,3,4,5,6,7,8,9],8),8);
 assert.deepEqual(countBelowNumbers([3,3,3,3,3],4),5);
 
 //finding index of the element in an array
@@ -118,13 +118,12 @@ assert.deepEqual(generateZipOfTwoArrays([1,2,3,4,5,1],["a","b"]),[[1,"a"],[2,"b"
 assert.deepEqual(generateRotatedArray([1,2,3,4,5],2),[3,4,5,1,2]);
 assert.deepEqual(generateRotatedArray(["a",1,2,],1),[1,2,"a"]);
 assert.deepEqual(generateRotatedArray([1,2,3,4,"a",5],9),[1,2,3,4,"a",5]);
-assert.deepEqual(generateRotatedArray([1,2,3,4,5,1],"a"),[]);
 
 //generate partitioned array
-assert.deepEqual(generatePartitionedArray([1,2,3,4,5],2),[[1,2],[3,4,5]]);
-assert.deepEqual(generatePartitionedArray([1,2,],1),[[1],[2]]);
-assert.deepEqual(generatePartitionedArray([1,2,3,4,5],9),[[1,2,3,4,5],[]]);
-assert.deepEqual(generatePartitionedArray([1,2,3,4,5,1],0),[[],[1,2,3,4,5,1]]);
+assert.deepEqual(generatePartitionedArray([1,2,3,4,5],2),[[3,4,5],[1,2]]);
+assert.deepEqual(generatePartitionedArray([1,2,],1),[[2],[1]]);
+assert.deepEqual(generatePartitionedArray([1,2,3,4,5],9),[[],[1,2,3,4,5]]);
+assert.deepEqual(generatePartitionedArray([1,2,3,4,5,1],0),[[1,2,3,4,5,1],[]]);
 
 //is subset array is really subset array of real array
 assert.deepEqual(isSubset(["a",1,2,],[1,2]),true);

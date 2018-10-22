@@ -1,158 +1,120 @@
+const complement = function(functionForComplement){
+  return function(argument1,argument2){
+    return !functionForComplement(argument1,argument2);
+  }
+}
 const isOdd  = function(number) {
-  return ((number%2)&&(number>0));
+  return (number%2);
 }
 
-const isEven = function(number) {
-  return !((number%2)||(number<0));
-}
+const isEven = complement(isOdd);
+
 const selectOddNumbers = function(numbers){
-  let oddNumbers=[];
-  for(let number of numbers){
-    if(isOdd(number)){
-      oddNumbers.push(number);
-    }
-  }
-  return oddNumbers;
+  return numbers.filter(isOdd);
 }
 
 const selectEvenNumbers = function(numbers){
-  let evenNumbers=[];
-  for(let number of numbers){
-    if(isEven(number)){
-      evenNumbers.push(number);
-    }
-  }
-  return evenNumbers;
+  return numbers.filter(isEven);
 }
 
 const segregateEvenOdd = function(numbers){
-  let partition={even:[],odd:[]};
-  partition.even = selectEvenNumbers(numbers);
-  partition.odd = selectOddNumbers(numbers); 
-  return partition;
+  return {even:numbers.filter(isEven),odd:numbers.filter(isOdd)};
 }
 
 const reverseArray = function(array){
-  let reversedArray = [];
-  for(let index=array.length-1;index>=0;index--){
-    reversedArray.push(array[index]);
-  }
-  return reversedArray;
+  return array.reverse();
 }
 
 const selectNthelementsInArray = function(array,element){
-  let nthElements = [];
-  for(let index=0;index<array.length;index+=(+element)){
-    nthElements.push(array[index]);
+  const isEqual = function(number,index){
+    return index%element == 0;
   }
-  return nthElements;
+  return array.filter(isEqual);
 }
 
 const generateFibinocciSeries = function (number){
-  if(number<2){
-    return "wrong input"
+  if(number<=2){
+    return [0,1];
   }
-  let fibonacciSeries=[0,1];
-  for(let index=2;index < number;index++){
-    fibonacciSeries[index] = fibonacciSeries[index-1]+fibonacciSeries[index-2];
-  }
-  return fibonacciSeries;
+  result = generateFibinocciSeries(number-1);
+  return result.concat([result[number-2]+result[number-3]]);
 }
 
 const revFibinocci = function(number){
-  return reverseArray(generateFibinocciSeries(number));
+  return (generateFibinocciSeries(number)).reverse();
 }
 
-const isGreater =function(num1,num2){
-  return num1 > num2;
+const isGreater = function(num1,num2){
+  return num1>num2;
 }
 
-const isLowest = function(num1,num2){
-  return num1 < num2;
+const isLowest = complement(isGreater);
+
+const greatestNumber =function(num1,num2){
+  return (num1 > num2)?num1:num2;
 }
 
-const findGreatestOrLowestNumber = function(numbers,type){
-  let operation={ 'lowest':isLowest ,'greater':isGreater } 
-  let result=numbers[0];
-  for(number of numbers){
-    if(operation[type](number,result)){
-      result=number;
-    }
-  }
-  return result;
+const lowestNumber = function(num1,num2){
+  return (num1 < num2)?num1:num2;
 }
 
 const findGreatestNumber = function(numbers){
-  return findGreatestOrLowestNumber(numbers,"greater");
+  return numbers.reduce(greatestNumber);
 }
 
 const findLowestNumber = function(numbers){
-  return findGreatestOrLowestNumber(numbers,"lowest");
+  return numbers.reduce(lowestNumber);
+}
+
+const sum = function(num1,num2){
+  return num1+num2;
 }
 
 const sumOfNumbers = function(numbers){
-  let sum=0;
-  for(let number of numbers){
-    sum=sum+number;
-  }
-  return sum;
+  return numbers.reduce(sum);
 }
 
 const averageOfNumbers = function(numbers){
-  let average=0;
-  average = sumOfNumbers(numbers)/numbers.length;
-  return average;
+  return numbers.reduce(sum)/numbers.length;
 }
 
 const findLengthOfString  = function(string) {
-  return (""+string).length
+  return (""+string).length;
 }
 
 const findLengthsInArray = function(array){
-  let lengths = [];
-  for (let index in array){
-    lengths[index]=findLengthOfString(array[index]);
-  }
-  return lengths;
+  return array.map(findLengthOfString);
 }
 
 const countOddNumbers = function(numbers){
-  return selectOddNumbers(numbers).length;
+  return numbers.filter(isOdd).length;
 }
 
 const countEvenNumbers = function(numbers){
-  return selectEvenNumbers(numbers).length;
-}
-
-
-const countingNumbers = function(numbers,type,threshold){
-  let operation={"above":isGreater , "below":isLowest }
-  let count=0;
-  for(let number of numbers){
-    if(operation[type](number,threshold)){
-      count++
-    }
-  }
-  return count;
+  return numbers.filter(isEven).length;
 }
 
 const countAboveNumbers = function(numbers,threshold){
-  return countingNumbers(numbers,"above",threshold);
+  const greaterThreshold = function(number){
+    return isGreater(number,threshold);
+  }
+  return numbers.filter(greaterThreshold).length
 }
 
 const countBelowNumbers = function(numbers,threshold){
-  return countingNumbers(numbers,"below",threshold);
+  const lesserThreshold = function(number){
+    return isLowest(number,threshold);
+  }
+  return numbers.filter(lesserThreshold).length;
 }
 
 const findIndexOfElement = function(array,element){
-  let position = -1;
-  for(let index=0;index<array.length;index++){
-    if (array[index] == element){
-      position = index;
-      index =array.length;
-    }
+  const findIndex = function(previousState,value){
+    let {indexFound,currIndex} = previousState;
+    indexFound = (indexFound == -1 && value == element)?currIndex :indexFound;
+    return {indexFound,currIndex:currIndex+1}
   }
-  return position;
+  return array.reduce(findIndex,{indexFound:-1,currIndex:0}).indexFound;
 }
 
 const checkAscendingOrDescendingOrder  = function(numbers,type){
@@ -175,108 +137,103 @@ const checkDescendingOrder =function(numbers){
 }
 
 const isNumber  = function(number) {
-  return ((+number)==number)
+  return ((+number)==number);
 }
 
 const extractDigits = function(string){
-  let digits=[];
-  string = "" + string;
-  for(let character of string){
-    if(isNumber(character)){
-      digits[digits.length]=+character;
-    }
-  }
-  return digits;
+  return (""+string).split("").filter(isNumber);
 }
 
 const isElementPresent =function(element,array){
-  let result = false;
-  for(let index = 0; index < array.length;index++){
-    if(element == array[index]){
-      result = true;
-      index = array.length;
-    }
-  }
-  return result;
+  return array.includes(element);
 }
 
-const isElementNotPresent = function(element,array){
-  return !(isElementPresent(element,array));
-}
+const isElementNotPresent = complement(isElementPresent);
 
 const findUniqueElements = function(array) {
-  let result=[];
-  for(let index = 0;index < array.length ;index++){
-    if(!(isElementPresent(array[index],result))){
-      result[result.length]=array[index];
+  const func = function(array,element){
+    if(array.includes(element)){
+      return array;
     }
+    return array.concat([element]);
   }
-  return result;
+  return array.reduce(func,[]);
 }
 
 const findUnionUniqueElement = function(array1,array2){
   return findUniqueElements(array1.concat(array2));
 }
 
-const findIntersectionOrDifferenceOfTwoArrays = function(array1,array2,type){
-  let operation = { "intersection" :isElementPresent ,"difference" :isElementNotPresent };
-  let unique1 = findUniqueElements(array1);
-  let unique2 = findUniqueElements(array2);
-  let result=[];
-  for(let index = 0;index < unique1.length;index++){
-    if(operation[type](unique1[index],unique2)){
-      result[result.length]=unique1[index];
-    }
+const isMember = function(array){
+  return function(element){
+    return array.includes(element);
   }
-  return result;
 }
 
 const findIntersectionOfTwoArrays = function (array1,array2){
-  return findIntersectionOrDifferenceOfTwoArrays(array1,array2,"intersection");
+  unique1 = findUniqueElements(array1);
+  unique2 = findUniqueElements(array2);
+  return unique1.filter(isMember(unique2));
 }
 
 const findDifferenceOfTwoArrays = function (array1,array2){
-  return findIntersectionOrDifferenceOfTwoArrays(array1,array2,"difference");
+  unique1 = findUniqueElements(array1);
+  unique2 = findUniqueElements(array2);
+  const difference = complement(isMember(unique2));
+  return unique1.filter(difference);
 }
 
 const generateZipOfTwoArrays  = function(array1,array2) {
-  let result = [];
-  let length = Math.min(array1.length,array2.length);
-  for(let index=0 ; index < length;index++){
-    result[index] = [array1[index],array2[index]];
+  max = array1;
+  min = array2;
+  if(max.length < min.length){
+    max = array2;
+    min = array1;
   }
-  return result;
+  const zip = function(state,element){
+    let {index,result} = state;
+    result.push([max[index],element]);
+    return {index:index+1,result};
+  }
+  return min.reduce(zip,{index:0,result:[]}).result;
+}
+
+const rotater = function(position){
+  return function(state,element){
+    let {index,elements} = state;
+    place=1;
+    if(index < position){
+      place = 0;
+    }
+    elements[place].push(element);
+    return { index:index+1,elements };
+  }
 }
 
 const generateRotatedArray = function(array,position){
-  let result = [];
-  let length = Math.min(array.length,position);
-  for(let index = length ; index < array.length;index++){
-    result.push(array[index]);
-  }
-  for(let index = 0;index < length;index++){
-    result.push(array[index]);
-  }
-  return result;
+  result=array.reduce(rotater(position),{index:0,elements:[[],[]]}).elements;
+  return result[1].concat(result[0]);
 }
 
-const generatePartitionedArray = function(array,number){
-  let result={ false : [] ,true :[] };
-  for(value of array){
-    result[isGreater(value,number)].push(value);
+const partitioner = function(threshold){
+  return function(array,element){
+    if(element > threshold){
+      array[0].push(element);
+      return array;
+    }
+    array[1].push(element);
+    return array;
   }
-  return [ result.false , result.true ];
+}
+const generatePartitionedArray = function(array,number){
+  return array.reduce(partitioner(number),[[],[]]);
 }
 
 const isSubset = function (array,subsetArray){
-  let result = true;
-  for(index = 0;index < subsetArray.length;index++){
-    if(isElementNotPresent(subsetArray[index],array)){
-      result = false;
-      index = subsetArray.length;
-    }
+  const subset = function(condition,element){
+    return (condition == true && array.includes(element));
   }
-  return result;
+  return subsetArray.reduce(subset,true);
 }
 
 exports.selectOddNumbers = selectOddNumbers;
