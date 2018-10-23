@@ -130,3 +130,4 @@ assert.deepEqual(isSubset(["a",1,2,],[1,2]),true);
 assert.deepEqual(isSubset(["a",1,2,],[]),true);
 assert.deepEqual(isSubset([1,2,3,2,3],[5,6,7,5]),false);
 assert.deepEqual(isSubset([1,2,3,4,5,1],["a","b"]),false);
+console.log("all tests passed");

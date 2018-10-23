@@ -21,8 +21,13 @@ const segregateEvenOdd = function(numbers){
   return {even:numbers.filter(isEven),odd:numbers.filter(isOdd)};
 }
 
+const func = function(accumulator,element){
+  accumulator.unshift(element);
+  return accumulator;
+}
+
 const reverseArray = function(array){
-  return array.reverse();
+  return array.reduce(func,[]);
 }
 
 const selectNthelementsInArray = function(array,element){
@@ -33,15 +38,20 @@ const selectNthelementsInArray = function(array,element){
 }
 
 const generateFibinocciSeries = function (number){
-  if(number<=2){
-    return [0,1];
-  }
-  result = generateFibinocciSeries(number-1);
-  return result.concat([result[number-2]+result[number-3]]);
+  const generateFibinocciByIndex = function(state,element){
+    let {values,index}=state;
+    if(index==0 || index == 1){
+      values.push(index);
+      return {values:values,index:index+1}
+    }
+    values.push(values[index-1]+values[index-2]);
+    return {values:values,index:index+1}
+  };
+  return new Array(number).fill("").reduce(generateFibinocciByIndex ,{values:[],index:0}).values;
 }
 
 const revFibinocci = function(number){
-  return (generateFibinocciSeries(number)).reverse();
+  return reverseArray(generateFibinocciSeries(number));
 }
 
 const isGreater = function(num1,num2){
@@ -117,23 +127,20 @@ const findIndexOfElement = function(array,element){
   return array.reduce(findIndex,{indexFound:-1,currIndex:0}).indexFound;
 }
 
-const checkAscendingOrDescendingOrder  = function(numbers,type){
-  let operation = { "ascending":isGreater ,"descending" :isLowest };
-  let msg = true;
-  for (let index=1;index < numbers.length;index++){
-    if(operation[type](numbers[index-1],numbers[index])){
-      msg = false;
-    }
+const isAscending = function (state,element){
+  let {condition,value}=state;
+  if(condition == true && value <= element){
+    return {condition:true,value:element};
   }
-  return msg;
+  return {condition:false,value:element};
 }
 
 const checkAscendingOrder =function(numbers){
-  return checkAscendingOrDescendingOrder(numbers,"ascending");
+  return numbers.reduce(isAscending,{ condition:true , value:numbers[0]}).condition;
 }
 
 const checkDescendingOrder =function(numbers){
-  return checkAscendingOrDescendingOrder(numbers,"descending");
+  return numbers.reverse().reduce(isAscending,{ condition:true , value:numbers[0]}).condition;
 }
 
 const isNumber  = function(number) {
@@ -150,14 +157,15 @@ const isElementPresent =function(element,array){
 
 const isElementNotPresent = complement(isElementPresent);
 
-const findUniqueElements = function(array) {
-  const func = function(array,element){
-    if(array.includes(element)){
-      return array;
-    }
-    return array.concat([element]);
+const uniqueThings = function(array,element){
+  if(array.includes(element)){
+    return array;
   }
-  return array.reduce(func,[]);
+  return array.concat([element]);
+}
+
+const findUniqueElements = function(array) {
+  return array.reduce(uniqueThings,[]);
 }
 
 const findUnionUniqueElement = function(array1,array2){
@@ -184,21 +192,20 @@ const findDifferenceOfTwoArrays = function (array1,array2){
 }
 
 const generateZipOfTwoArrays  = function(array1,array2) {
-  max = array1;
-  min = array2;
-  if(max.length < min.length){
-    max = array2;
-    min = array1;
+  if(array1.length < array2.length){
+    let temp = array1;
+    array1= array2;
+    array2 = temp;
   }
   const zip = function(state,element){
     let {index,result} = state;
-    result.push([max[index],element]);
+    result.push([array1[index],element]);
     return {index:index+1,result};
   }
-  return min.reduce(zip,{index:0,result:[]}).result;
+  return array2.reduce(zip,{index:0,result:[]}).result;
 }
 
-const rotater = function(position){
+const rotateArray = function(position){
   return function(state,element){
     let {index,elements} = state;
     place=1;
@@ -211,11 +218,11 @@ const rotater = function(position){
 }
 
 const generateRotatedArray = function(array,position){
-  result=array.reduce(rotater(position),{index:0,elements:[[],[]]}).elements;
+  result=array.reduce(rotateArray(position),{index:0,elements:[[],[]]}).elements;
   return result[1].concat(result[0]);
 }
 
-const partitioner = function(threshold){
+const partition = function(threshold){
   return function(array,element){
     if(element > threshold){
       array[0].push(element);
@@ -226,7 +233,7 @@ const partitioner = function(threshold){
   }
 }
 const generatePartitionedArray = function(array,number){
-  return array.reduce(partitioner(number),[[],[]]);
+  return array.reduce(partition(number),[[],[]]);
 }
 
 const isSubset = function (array,subsetArray){
