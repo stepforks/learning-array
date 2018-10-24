@@ -21,13 +21,13 @@ const segregateEvenOdd = function(numbers){
   return {even:numbers.filter(isEven),odd:numbers.filter(isOdd)};
 }
 
-const func = function(accumulator,element){
+const unShiftElement = function(accumulator,element){
   accumulator.unshift(element);
   return accumulator;
 }
 
 const reverseArray = function(array){
-  return array.reduce(func,[]);
+  return array.reduce(unShiftElement,[]);
 }
 
 const selectNthelementsInArray = function(array,element){
@@ -40,14 +40,16 @@ const selectNthelementsInArray = function(array,element){
 const generateFibinocciSeries = function (number){
   const generateFibinocciByIndex = function(state,element){
     let {values,index}=state;
-    if(index==0 || index == 1){
-      values.push(index);
-      return {values:values,index:index+1}
+    element = values[index-1]+values[index-2];
+    let valueToPush = element;
+    if(index == 0 || index == 1){
+      valueToPush = index;
     }
-    values.push(values[index-1]+values[index-2]);
+    values.push(valueToPush);
     return {values:values,index:index+1}
   };
-  return new Array(number).fill("").reduce(generateFibinocciByIndex ,{values:[],index:0}).values;
+  result = new Array(number).fill("")
+  return result.reduce(generateFibinocciByIndex ,{values:[],index:0}).values;
 }
 
 const revFibinocci = function(number){
@@ -129,10 +131,10 @@ const findIndexOfElement = function(array,element){
 
 const isAscending = function (state,element){
   let {condition,value}=state;
-  if(condition == true && value <= element){
-    return {condition:true,value:element};
+  if(!(condition == true && value <= element)){
+    condition = false;
   }
-  return {condition:false,value:element};
+  return {condition:condition,value:element};
 }
 
 const checkAscendingOrder =function(numbers){
@@ -140,7 +142,7 @@ const checkAscendingOrder =function(numbers){
 }
 
 const checkDescendingOrder =function(numbers){
-  return numbers.reverse().reduce(isAscending,{ condition:true , value:numbers[0]}).condition;
+  return checkAscendingOrder(reverseArray(numbers));
 }
 
 const isNumber  = function(number) {
@@ -193,8 +195,8 @@ const findDifferenceOfTwoArrays = function (array1,array2){
 
 const generateZipOfTwoArrays  = function(array1,array2) {
   if(array1.length < array2.length){
-    let temp = array1;
-    array1= array2;
+    temp = array1;
+    array1 = array2;
     array2 = temp;
   }
   const zip = function(state,element){
@@ -208,7 +210,7 @@ const generateZipOfTwoArrays  = function(array1,array2) {
 const rotateArray = function(position){
   return function(state,element){
     let {index,elements} = state;
-    place=1;
+    place = 1;
     if(index < position){
       place = 0;
     }
@@ -224,11 +226,11 @@ const generateRotatedArray = function(array,position){
 
 const partition = function(threshold){
   return function(array,element){
+    place = 1;
     if(element > threshold){
-      array[0].push(element);
-      return array;
+      place = 0;
     }
-    array[1].push(element);
+    array[place].push(element);
     return array;
   }
 }
