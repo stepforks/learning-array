@@ -1,3 +1,7 @@
+// The tests should be in an increasing order of complexity. Take a look at Bhawna's tests or Anu's if you don't know what I mean.
+// Also you are not testing for any empty, null cases. you should add them.
+
+
 const assert = require("assert");
 const {selectOddNumbers,selectEvenNumbers,segregateEvenOdd,reverseArray,selectNthelementsInArray,revFibinocci,findGreatestNumber,findLowestNumber,averageOfNumbers,findLengthsInArray,countOddNumbers,countEvenNumbers,countAboveNumbers,countBelowNumbers,findIndexOfElement,checkAscendingOrder,checkDescendingOrder,extractDigits,findUniqueElements,findUnionUniqueElement,findIntersectionOfTwoArrays,findDifferenceOfTwoArrays,generateZipOfTwoArrays,generateRotatedArray,generatePartitionedArray,isSubset}=require("./library.js");
 //select odd number function
