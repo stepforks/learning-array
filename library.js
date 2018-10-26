@@ -17,11 +17,12 @@ const selectEvenNumbers = function(numbers){
   return numbers.filter(isEven);
 }
 
-const segregateEvenOdd = function(numbers){
+const segregateEvenOdd = function(numbers){ // DHRUV - the code in segregateEvenOdd is duplicated with code in selectOddNumbers, selectEvenNumbers. Refactor to remove duplication... 
   return {even:numbers.filter(isEven),odd:numbers.filter(isOdd)};
 }
 
-const unShiftElement = function(accumulator,element){
+// DHRUV - snce this is probably just used in the reverseArray and is not really very useful on its own, it can and should be used as an anonymous function
+const unShiftElement = function(accumulator,element){ // DHRUV - good usage of unshift :) 
   accumulator.unshift(element);
   return accumulator;
 }
@@ -30,12 +31,14 @@ const reverseArray = function(array){
   return array.reduce(unShiftElement,[]);
 }
 
-const selectNthelementsInArray = function(array,element){
+// DHRUV - naming, the parameter is not element, what is it?
+// DHRUV - naming, this function does not convey that its going to select multiples of something.
+const selectNthelementsInArray = function(array,element){ // DHRUV - naming, NthElements? Also, do you need to say Array in the function name
   const isEqual = function(number,index){
     return index%element == 0;
   }
   return array.filter(isEqual);
-}
+} 
 
 const generateFibinocciSeries = function (number){
   const generateFibinocciByIndex = function(state,element){
@@ -62,17 +65,21 @@ const isGreater = function(num1,num2){
 
 const isLowest = complement(isGreater);
 
+// greatestNumber, lowestNumber are not good. I think greatest, lowest are used when there are more than 2 things. Greater and lower or max or min are better here.
+
 const greatestNumber =function(num1,num2){
   return (num1 > num2)?num1:num2;
 }
 
-const lowestNumber = function(num1,num2){
+// If you were to express this function as a complement of some function, what would that be?
+const lowestNumber = function(num1,num2){ 
   return (num1 < num2)?num1:num2;
 }
 
 const findGreatestNumber = function(numbers){
   return numbers.reduce(greatestNumber);
 }
+
 
 const findLowestNumber = function(numbers){
   return numbers.reduce(lowestNumber);
@@ -180,10 +187,11 @@ const isMember = function(array){
   }
 }
 
-const findIntersectionOfTwoArrays = function (array1,array2){
+// DHRUV - these functions are not about arrays but about sets. So you should rename the functions.
+const findIntersectionOfTwoArrays = function (array1,array2){ // DHRUV -  Since they are about sets, you shouldn't have to deduplicate the arguements you're receiving. 
   unique1 = findUniqueElements(array1);
   unique2 = findUniqueElements(array2);
-  return unique1.filter(isMember(unique2));
+  return unique1.filter(isMember(unique2)); // DHRUV - Good use if isMember :) 
 }
 
 const findDifferenceOfTwoArrays = function (array1,array2){
@@ -194,7 +202,7 @@ const findDifferenceOfTwoArrays = function (array1,array2){
 }
 
 const generateZipOfTwoArrays  = function(array1,array2) {
-  if(array1.length < array2.length){
+  if(array1.length < array2.length){ // DHRUV - why do you need this? You can probabaly get the smaller array without if's.
     temp = array1;
     array1 = array2;
     array2 = temp;
@@ -207,8 +215,9 @@ const generateZipOfTwoArrays  = function(array1,array2) {
   return array2.reduce(zip,{index:0,result:[]}).result;
 }
 
+// DHRUV - there is some amount of duplication in rotateArray and partition. Can you eliminate that? Should you?
 const rotateArray = function(position){
-  return function(state,element){
+  return function(state,element){ // DHRUV - try practising destructing in the arguments itself
     let {index,elements} = state;
     place = 1;
     if(index < position){
@@ -224,6 +233,7 @@ const generateRotatedArray = function(array,position){
   return result[1].concat(result[0]);
 }
 
+// DHRUV - this might be ha good function to use a ternary operator
 const partition = function(threshold){
   return function(array,element){
     place = 1;
@@ -238,6 +248,7 @@ const generatePartitionedArray = function(array,number){
   return array.reduce(partition(number),[[],[]]);
 }
 
+// DHRUV - implement this function using currying. That is extract subset out of this method. Not that its better that way, but because that's good thing to practise.
 const isSubset = function (array,subsetArray){
   const subset = function(condition,element){
     return (condition == true && array.includes(element));
